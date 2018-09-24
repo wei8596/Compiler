@@ -1,0 +1,84 @@
+1. Lex版本
+	flex 2.6.0
+
+2. 作業平台
+	Ubuntu 16.04 LTS
+
+3. 執行方式
+	安裝flex: sudo apt-get install flex
+	[方法1]
+		編譯lex file:	flex scanner.l, 產生lex.yy.c
+		編譯c file:		gcc lex.yy.c -lfl
+		執行:			./a.out < test.in
+	[方法2]
+		使用makefile:	make clean all
+		執行:			./scanner < test.in
+	測試時可執行run這個script, 會測試testfile中的檔案,
+	並將輸出結果存在outfile對應的檔案
+
+4. 如何處理這份規格書上的問題
+	(1). Pascal 是 case-insensitive
+		加入 %option case-insensitive, 會產生case-insensitive的scanner
+
+	(2). 識別字 (Identifiers)
+		yytext, yyleng是lex的預設變數, yyleng記錄yytext的長度,
+		可用來判斷字數是否超過 30 個字元
+
+		定義letter	[A-Za-z]
+			digit	[0-9]
+		識別字的第一個字元必須是英文字母或是底線符號 (_) 起頭
+			(_|{letter})
+		在第一個字元之後,可以是英文字母、數字和底線符號,不可包含空白字元。
+			({letter}|{digit}|_)*
+		合併後得到
+			id	(_|{letter})({letter}|{digit}|_)*
+
+	(3). 整數 (Integer)
+		定義sign	[+-]
+		可以有正負,但不一定會有正負號,所以開頭為{sign}?  (? --- 0或1次)
+		數字會緊接在正負號後,但不能有多餘的0,所以開頭為0即為0,並表示結束
+			(0|([1-9]{digit}*))
+		合併後得到
+			intnum	{sign}?(0|([1-9]{digit}*))
+
+	(4). 實數 (Real) 常數可以有正負，且有小數點 (decimal point) 表示法和科學符號表示法兩種
+		定義dotdigits	.(0|({digit}*[1-9]))	小數
+			exponent	[E|e]{sign}?{digits}	指數
+		實數格式可用整數格式做延伸,且小數或指數部份至少要其中一個,得到
+			real	{intnum}({dotdigits}|{exponent}|{dotdigits}{exponent})
+
+	(5). 字串常數 (quoted string) 字數最長到 30 個字元
+		字串本身不包含最外面的',且字串中有連續兩個'表示一個',無法直接用yyleng判斷
+		可先建立一個大小為31的字元陣列(字串結尾'\0'),之後掃描yytext[1 ~ yyleng-1],
+		並複製到陣列,若有連續兩個',則跳過一個
+
+	(6). scanner 如何處理註解?註解可以跨行
+		註解格式為(*XXX*),只要註解內容不出現*)即是合法的註解
+		lex中括弧[()]與點[.]均有含意,因此須加上反斜線\
+		定義commentL		\(\*
+			commentR	\*\)
+		註解內容中左括弧不受限制,內容為任意字元,可跨行,只要註解內容不出現*)即是合法的註解
+		分為 1.內容均無*和) 2.內容無* 3.內容無)  得到
+			comment	{commentL}"("*([^*)]|([^*]")")|("*"[^)]?))*"*"*{commentR}
+
+	(7). scanner 如何在發生錯誤後做 recover?當錯誤發生，那些字元要被刪除?
+		為每種可能的token設計錯誤pattern,當符合錯誤pattern,刪除這些字元,繼續往下掃描
+
+5. 寫這個作業所遇到的問題
+	(1). lex中有定義一些特殊字元,誤用造成錯誤
+		若要將特殊字元當成一般字元,需要使用反斜線\或是字串格式""
+
+	(2). [+-]正負號, 加減運算
+		要判斷token前後,若[+-]前後皆為數字,為加減運算,否則為正負號
+		需要額外的變數記錄前一個token的型態,並利用lex提供的/運算,
+		當符合/後方的條件才配對/前方的pattern
+		另外,遇到換行時需更新變數,避免上一行結尾與本行開頭均為數字造成誤判
+
+	(3). regular expression pattern與state
+		一開始不知道如何寫註解的pattern,於是嘗試state的寫法.雖然覺得比較容易看懂,
+		但寫到後面發現不方便做處理,於是重新思考如何寫出註解的pattern,
+		最後寫出,使用pattern做處理相較之下容易許多
+
+6. 所有測試檔執行出來的結果，存成文字檔
+	test.out與儲存在outfile目錄下的文字檔
+

@@ -1,0 +1,13 @@
+#!/bin/bash
+ls outfile >& /dev/null && rm -rf outfile; mkdir outfile
+./scanner < testfile/test1.pas > outfile/test1.out
+./scanner < testfile/test2.pas > outfile/test2.out
+./scanner < testfile/test3.pas > outfile/test3.out
+./scanner < testfile/test4.pas > outfile/test4.out
+./scanner < testfile/test5.pas > outfile/test5.out
+./scanner < testfile/test6.pas > outfile/test6.out
+./scanner < testfile/test7.pas > outfile/test7.out
+./scanner < testfile/test8.pas > outfile/test8.out
+./scanner < testfile/test9.pas > outfile/test9.out
+./scanner < testfile/test10.pas > outfile/test10.out
+./scanner < testfile/test11.pas > outfile/test11.out

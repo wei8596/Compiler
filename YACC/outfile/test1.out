@@ -1,0 +1,9 @@
+[1;32mLine 1: program test;
+[m[1;32mLine 2: var
+[m[1;32mLine 3:   i : integer;
+[m[1;32mLine 4: begin
+[m[1;32mLine 5:   read(i);
+[m[1;31mLine 6, 1st char: 4, syntax error at ';'.
+Expect '.' not ';'
+[m[1;32mLine 6: end;
+[m

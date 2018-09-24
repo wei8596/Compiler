@@ -1,0 +1,37 @@
+program ProGram PROGRAM
+
+peter _db a1
+1a ^db #db abcdefghijklmnopqrstuvwxyz12345
+
+a := 100
+b := +20
+c := -1000
++100 - -100
+
+d := 1.0
+e := 3.14
+f := 7E-2
+g := 12.25e+6
+h := -7.5E+3
+i := 1.00
+j := 03.0
+k := 12.100
+l := .1
+m := 1.
+
+''
+''''
+' '
+'You''ll see'
+'''
+'a'b'
+
+
+(* comment *)
+(* comment
+second line *)
+(*****)
+(* a**b) *)
+(*ab*)**)
+(* co(*mme*)nt *)
+(*

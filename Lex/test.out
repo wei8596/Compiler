@@ -1,0 +1,66 @@
+Line: 1, 1st char: 1, "program" is a "reserved word".
+Line: 1, 1st char: 9, "ProGram" is a "reserved word".
+Line: 1, 1st char: 17, "PROGRAM" is a "reserved word".
+Line: 3, 1st char: 1, "peter" is an "ID".
+Line: 3, 1st char: 7, "_db" is an "ID".
+Line: 3, 1st char: 11, "a1" is an "ID".
+Line: 4, 1st char: 1, "1a" is an invalid "ID".
+Line: 4, 1st char: 4, "^db" is an invalid "ID".
+Line: 4, 1st char: 8, "#db" is an invalid "ID".
+Line: 4, 1st char: 12, "abcdefghijklmnopqrstuvwxyz12345" is an invalid "ID".
+Line: 6, 1st char: 1, "a" is an "ID".
+Line: 6, 1st char: 3, ":=" is a "symbol".
+Line: 6, 1st char: 6, "100" is an "integer".
+Line: 7, 1st char: 1, "b" is an "ID".
+Line: 7, 1st char: 3, ":=" is a "symbol".
+Line: 7, 1st char: 6, "+20" is an "integer".
+Line: 8, 1st char: 1, "c" is an "ID".
+Line: 8, 1st char: 3, ":=" is a "symbol".
+Line: 8, 1st char: 6, "-1000" is an "integer".
+Line: 9, 1st char: 1, "+100" is an "integer".
+Line: 9, 1st char: 6, "-" is a "symbol".
+Line: 9, 1st char: 8, "-100" is an "integer".
+Line: 11, 1st char: 1, "d" is an "ID".
+Line: 11, 1st char: 3, ":=" is a "symbol".
+Line: 11, 1st char: 6, "1.0" is a "real".
+Line: 12, 1st char: 1, "e" is an "ID".
+Line: 12, 1st char: 3, ":=" is a "symbol".
+Line: 12, 1st char: 6, "3.14" is a "real".
+Line: 13, 1st char: 1, "f" is an "ID".
+Line: 13, 1st char: 3, ":=" is a "symbol".
+Line: 13, 1st char: 6, "7E-2" is a "real".
+Line: 14, 1st char: 1, "g" is an "ID".
+Line: 14, 1st char: 3, ":=" is a "symbol".
+Line: 14, 1st char: 6, "12.25e+6" is a "real".
+Line: 15, 1st char: 1, "h" is an "ID".
+Line: 15, 1st char: 3, ":=" is a "symbol".
+Line: 15, 1st char: 6, "-7.5E+3" is a "real".
+Line: 16, 1st char: 1, "i" is an "ID".
+Line: 16, 1st char: 3, ":=" is a "symbol".
+Line: 16, 1st char: 6, "1.00" is an invalid "real".
+Line: 17, 1st char: 1, "j" is an "ID".
+Line: 17, 1st char: 3, ":=" is a "symbol".
+Line: 17, 1st char: 6, "03.0" is an invalid "real".
+Line: 18, 1st char: 1, "k" is an "ID".
+Line: 18, 1st char: 3, ":=" is a "symbol".
+Line: 18, 1st char: 6, "12.100" is an invalid "real".
+Line: 19, 1st char: 1, "l" is an "ID".
+Line: 19, 1st char: 3, ":=" is a "symbol".
+Line: 19, 1st char: 6, ".1" is an invalid "real".
+Line: 20, 1st char: 1, "m" is an "ID".
+Line: 20, 1st char: 3, ":=" is a "symbol".
+Line: 20, 1st char: 6, "1." is an invalid "real".
+Line: 22, 1st char: 1, "" is a "string".
+Line: 23, 1st char: 1, "'" is a "string".
+Line: 24, 1st char: 1, " " is a "string".
+Line: 25, 1st char: 1, "You'll see" is a "string".
+Line: 26, 1st char: 1, "'''" is an invalid "string".
+Line: 27, 1st char: 1, "'a'b'" is an invalid "string".
+Line: 30, 1st char: 1, "(* comment *)" is a "comment".
+Line: 31, 1st char: 1, "(* comment
+second line *)" is a "comment".
+Line: 33, 1st char: 1, "(*****)" is a "comment".
+Line: 34, 1st char: 1, "(* a**b) *)" is a "comment".
+Line: 35, 1st char: 1, "(*ab*)**)" is an invalid "comment".
+Line: 36, 1st char: 1, "(* co(*mme*)nt *)" is an invalid "comment".
+Line: 37, 1st char: 1, "(*" is an invalid "comment".

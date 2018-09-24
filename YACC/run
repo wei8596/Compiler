@@ -1,0 +1,17 @@
+#!/bin/bash
+ls outfile >& /dev/null && rm -rf outfile; mkdir outfile
+./parser < testfile_lab2/test1.pas > outfile/test1.out
+./parser < testfile_lab2/test2.pas > outfile/test2.out
+./parser < testfile_lab2/test3.pas > outfile/test3.out
+./parser < testfile_lab2/test4.pas > outfile/test4.out
+./parser < testfile_lab2/test5.pas > outfile/test5.out
+
+cd outfile
+arr=`ls *.out`
+i=1
+for outfile in $arr
+do
+	cat $outfile
+	echo "-----test$i.pas-----"
+	i=$((i+1))
+done

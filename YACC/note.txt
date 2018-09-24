@@ -1,0 +1,44 @@
+1. Lex版本
+	flex 2.6.0
+   Yacc版本
+	bison (GNU Bison) 3.0.4
+
+2. 作業平台
+	Ubuntu 16.04 LTS
+
+3. 執行方式
+	安裝bison: sudo apt-get install bison
+	[方法1]
+		編譯yacc file:	bison –y –d parser.y, 產生y.tab.c及y.tab.h
+		編譯lex file:	flex scanner.l, 產生lex.yy.c
+		編譯c file:		gcc lex.yy.c y.tab.c -ly –lfl
+		執行:			./a.out < test.pas
+	[方法2]
+		使用makefile:	make clean all
+		執行:			./parser < test.pas
+	測試時可執行run這個script, 會測試testfile_lab2中的檔案,
+	並將輸出結果存在outfile對應的檔案
+
+4. 如何處理這份規格書上的問題
+	(1) parser遇到error時，要印出發生error的行號、字元的位置和解釋error發生的原因
+		YACC會透過yyparse()呼叫yylex()找token, 此時可以記錄目前行號、字元位置,
+		遇到error時,再輸出,並根據Grammars輸出error發生的原因.
+
+	(2) parser遇到error要做recovery
+		YACC中的error可以match任何數量的token,
+		當符合該錯誤文法時, 可以使用內建的yyclearin,
+		清除stack中所有目前已讀到的token, 做recovery, 並印出錯誤訊息
+
+5. 寫這個作業所遇到的問題
+	(1)一開始所有訊息都是相同顏色, 不方便做debug
+		因此可以定義一些顏色, 讓error有明顯區別
+		#define NONE "\033[m"
+		#define LIGHT_RED "\033[1;31m"
+		#define LIGHT_GREEN "\033[1;32m"
+	(2)Lex傳給YACC的yylval變數, 預設為整數, 無法回傳其他資料型態
+		因此可利用YACC中的%union重新定義yylval的型態,
+		同時也定義symbol的型態
+
+6. 所有測試檔執行出來的結果，存成文字檔
+	test.out與儲存在outfile目錄下的.out檔
+

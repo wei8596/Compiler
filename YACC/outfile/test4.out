@@ -1,0 +1,9 @@
+[1;32mLine 1: program test;
+[m[1;32mLine 2: var
+[m[1;32mLine 3:   i, j : integer;
+[m[1;32mLine 4: begin
+[m[1;32mLine 5:   read(i);
+[m[1;32mLine 6:   i:= (i+j)*2-i/j;
+[m[1;32mLine 7:   write(i);
+[m[1;32mLine 8: end.
+[m
