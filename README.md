@@ -1,2 +1,1 @@
-# Compiler
-Pascal Compiler
+# Pascal Compiler
